@@ -1,0 +1,1 @@
+delete the proxy file and config in angular.json 

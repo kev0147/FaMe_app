@@ -1,0 +1,36 @@
+<div class="container">
+    <button class="back-button">Retour</button>
+    <form class="registration-form" [formGroup]="patientForm" (ngSubmit)="onSubmit()">
+        <h1>Inscription</h1>
+        <div formGroupName="profileForm">
+            <div class="form-group">
+                <label for="nom">Nom<span>*</span></label>
+                <input type="text" formControlName="name" required>
+            </div>
+            <div class="form-group">
+                <label for="prenom">Prénom<span>*</span></label>
+                <input type="text" formControlName="firstname" required>
+            </div>
+            <div class="form-group">
+                <label for="telephone">Téléphone<span>*</span></label>
+                <input type="tel" formControlName="phone_number" required>
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" formControlName="email">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="sexe">Sexe</label>
+            <select formControlName="gender">
+                <option value="M">Homme</option>
+                <option value="F">Femme</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="annee_naissance">Année de naissance</label>
+            <input type="date" formControlName="birth_date">
+        </div>
+        <button type="submit" class="submit-button">Valider</button>
+    </form>
+</div>
