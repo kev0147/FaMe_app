@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { ConnexionComponent } from './connexion/connexion.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InscriptionComponent,
     WelcomePageComponent,
-    ConnexionComponent
+    ConnexionComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

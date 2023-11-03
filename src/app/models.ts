@@ -12,8 +12,8 @@ export interface Patient {
 }
 
 export interface Token {
-    acces_token: string;
-    refresh_token: string;
+    acces: string;
+    refresh: string;
 }
 
 export interface User {

@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
+import { Token, User } from './models';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry, tap } from 'rxjs/operators';
-import { Patient } from './models';
+import { Observable, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class InscriptionService {
+export class ConnexionService {
 
-  private inscriptionUrl = 'http://127.0.0.1:8000/api/patientInscription/';  // URL to web api
+  private inscriptionUrl = 'http://127.0.0.1:8000/api/token/';  // URL to web api
 
   constructor(private http: HttpClient) { }
 
@@ -17,10 +16,8 @@ export class InscriptionService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json'})
   };
 
-  // inscription_patient
-  addPatient(patient: Patient): Observable<Patient> {
-    console.log(patient);
-    return this.http.post<Patient>(this.inscriptionUrl, patient, this.httpOptions).pipe(
+  getToken(user: User): Observable<Token> {
+    return this.http.post<Token>(this.inscriptionUrl, user, this.httpOptions).pipe(
       catchError(this.handleError)
     );
   }

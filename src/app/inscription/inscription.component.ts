@@ -33,7 +33,7 @@ export class InscriptionComponent {
 
   onSubmit() {
     // TODO: Use EventEmitter with form value
-    console.warn(this.patientForm.value);
+    //console.warn(this.patientForm.value);
     const signedUpPatientProfile: Profile = {
       name: this.patientForm.value.profileForm?.name!,
       firstname: this.patientForm.value.profileForm?.firstname!,
