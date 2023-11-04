@@ -9,6 +9,7 @@ import { InscriptionService } from '../inscription.service';
   styleUrls: ['./inscription.component.css']
 })
 export class InscriptionComponent {
+  signed_up : Boolean = false;
   patient: Patient | undefined;
   patientForm = this.fb.group(
     {
@@ -29,7 +30,7 @@ export class InscriptionComponent {
     email: new FormControl('')
   });*/
 
-  constructor(private fb: FormBuilder, private inscriptionService: InscriptionService) { }
+  constructor(private fb: FormBuilder, private inscriptionService: InscriptionService, private router: Router) { }
 
   onSubmit() {
     // TODO: Use EventEmitter with form value
@@ -46,7 +47,7 @@ export class InscriptionComponent {
       profile: signedUpPatientProfile
     };
     this.addPatient(signedUpPatient);
-
+    this.signed_up = true;
   }
 
   addPatient(patient: Patient) {
@@ -54,6 +55,10 @@ export class InscriptionComponent {
       .subscribe(patient => {
         this.patient = patient;
       });
+  }
+
+  goBack(){
+    this.router.navigate(['']);
   }
 
   formatDate(patientBirthDate: Date) {
@@ -71,6 +76,7 @@ export class InscriptionComponent {
 
 
 import { AbstractControl, ValidatorFn } from '@angular/forms';
+import { Router } from '@angular/router';
 
 export function phoneNumberFormatValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {

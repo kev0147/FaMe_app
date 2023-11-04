@@ -1,5 +1,5 @@
-<div class="container">
-    <button class="back-button">Retour</button>
+<div class="container" *ngIf="!signed_up">
+    <button class="back-button" (click)="goBack()">Retour</button>
     <form class="registration-form" [formGroup]="patientForm" (ngSubmit)="onSubmit()">
         <h1>Inscription</h1>
         <div formGroupName="profileForm">
@@ -33,4 +33,7 @@
         </div>
         <button type="submit" class="submit-button">Valider</button>
     </form>
+</div>
+<div *ngIf="signed_up">
+    <H1>Merci. Vous serez contacte dans peu de temps</H1>
 </div>

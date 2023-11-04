@@ -1,5 +1,5 @@
 <div class="container">
-    <button class="back-button">Retour</button>
+    <button class="back-button" (click)="goBack()">Retour</button>
     <form class="registration-form" [formGroup]="userForm" (ngSubmit)="onSubmit()">
         <h1>Connexion</h1>
         <div formGroupName="profileForm">

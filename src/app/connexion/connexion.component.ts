@@ -34,4 +34,8 @@ export class ConnexionComponent {
     this.router.navigate(['/dashboard'], { queryParams: { data: JSON.stringify(token) } });
   }
 
+  goBack(){
+    this.router.navigate(['']);
+  }
+
 }
