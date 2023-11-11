@@ -1,48 +1,82 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
-
-.header {
-    background-color: #fff;
+/* Example CSS for the provided HTML structure */
+.container {
+    background-color: #f0f5ff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header {
     display: flex;
     justify-content: space-between;
-    padding: 10px;
-}
-
-.header-button {
-    background-color: #3498db;
-    color: #fff;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .patient-name {
+    font-weight: bold;
+    margin-left: 10px;
+  }
+  
+  .profile-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+  
+  .chat-button {
+    padding: 8px 15px;
     border: none;
-    padding: 10px 20px;
     border-radius: 5px;
+    background-color: #4e7bf3;
+    color: white;
     cursor: pointer;
     transition: background-color 0.3s;
-}
-
-.header-button:hover {
-    background-color: #2980b9;
-}
-
-.main {
-    background-color: #3498db;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  }
+  
+  .chat-button:hover {
+    background-color: #345dad;
+  }
+  
+  .container {
+    background-color: #f0f5ff;
     padding: 20px;
-}
-
-.main-button {
-    background-color: #fff;
-    color: #3498db;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  
+  
+  .main-space {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .button-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-gap: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  button {
+    padding: 10px 20px;
     border: none;
-    padding: 15px 30px;
-    margin: 10px;
     border-radius: 5px;
+    background-color: #4e7bf3;
+    color: white;
     cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.main-button:hover {
-    background-color: #f0f0f0;
-}
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #345dad;
+  }
+  

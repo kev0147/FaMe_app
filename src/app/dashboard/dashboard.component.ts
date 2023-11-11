@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Token } from '../models';
+import { Patient, Token } from '../models';
+import { PatientService } from '../patient.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,12 +9,19 @@ import { Token } from '../models';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-  token:Token | undefined;
-  constructor(private route: ActivatedRoute) {
+  token:Token =  {access:"",refresh:""};
+  patient: Patient | undefined;
+  
+  ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      if (params['data']) {
-        this.token = JSON.parse(params['data']);
+      if (params['access']) {
+        this.token.access = params['access'];
+        this.token.refresh = params['refresh'];
       }
     });
+
+    this.patientService.getTheLoggedInPatient(this.token).subscribe(patient => this.patient = patient);
   }
+
+  constructor(private route: ActivatedRoute, private patientService: PatientService) {}
 }

@@ -26,12 +26,18 @@ export class ConnexionComponent {
       username : this.userForm.value?.username!,
       password : this.userForm.value.password!
     }
+    console.log(user);
     this.connexionService.getToken(user).subscribe(token=>this.token = token);
-    if(this.token){this.goToDashboard}
+    
+    const accessToken = this.token?.access;
+    if (accessToken) {
+      this.goToDashboard();
+      console.log(this.token);
+    }
   }
 
-  goToDashboard(token: Token){
-    this.router.navigate(['/dashboard'], { queryParams: { data: JSON.stringify(token) } });
+  goToDashboard(){
+    this.router.navigate(['dashboard'], { queryParams: { access: this.token?.access, refresh: this.token?.refresh } });
   }
 
   goBack(){

@@ -44,7 +44,9 @@ h1 {
     border-color: #66afe9; /* Couleur du bord pour les champs valides */
 }
 
-.form-group span {
+.form-group span,
+.error_message
+{
     color: red;
 }
 

@@ -3,13 +3,15 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry, tap } from 'rxjs/operators';
 import { Patient } from './models';
+import { environment } from './environnement';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InscriptionService {
+  private backendUrl = environment.backendUrl;
 
-  private inscriptionUrl = 'http://127.0.0.1:8000/api/patientInscription/';  // URL to web api
+  private inscriptionUrl = `${this.backendUrl}patientInscription/`; 
 
   constructor(private http: HttpClient) { }
 
@@ -36,6 +38,6 @@ export class InscriptionService {
         `Backend returned code ${error.status}, body was: `, error.error);
     }
     // Return an observable with a user-facing error message.
-    return throwError(() => new Error('Something bad happened; please try again later.'));
+    return throwError(() => new Error('Something bad happened'));
   }
 }

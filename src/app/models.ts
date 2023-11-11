@@ -12,7 +12,7 @@ export interface Patient {
 }
 
 export interface Token {
-    acces: string;
+    access: string;
     refresh: string;
 }
 

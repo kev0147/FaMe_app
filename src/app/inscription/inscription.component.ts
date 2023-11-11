@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Patient, Profile, User } from '../models';
 import { InscriptionService } from '../inscription.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inscription',
@@ -10,50 +11,55 @@ import { InscriptionService } from '../inscription.service';
 })
 export class InscriptionComponent {
   signed_up : Boolean = false;
-  patient: Patient | undefined;
+  validationButtonHasBeenPressed : Boolean = false;
+  signedUpPatient: Patient | undefined;
   patientForm = this.fb.group(
     {
       profileForm: this.fb.group({
         name: ['', Validators.required],
         firstname: ['', Validators.required],
-        phone_number: ['', [Validators.required, phoneNumberFormatValidator]],
+        phone_number: ['', [Validators.required, Validators.pattern('^[0-9]{8}$')]],
         email: ['', Validators.email]
       }),
       gender: ['', Validators.required],
-      birth_date: ['']
+      birth_date: ['', Validators.required]
     },
   );
-  /*profileForm = new FormGroup({
-    name: new FormControl(''),
-    firstName: new FormControl(''),
-    phone_number: new FormControl(''),
-    email: new FormControl('')
-  });*/
 
+  
   constructor(private fb: FormBuilder, private inscriptionService: InscriptionService, private router: Router) { }
 
   onSubmit() {
-    // TODO: Use EventEmitter with form value
-    //console.warn(this.patientForm.value);
-    const signedUpPatientProfile: Profile = {
-      name: this.patientForm.value.profileForm?.name!,
-      firstname: this.patientForm.value.profileForm?.firstname!,
-      email: this.patientForm.value.profileForm?.email!,
-      phone_number: Number(this.patientForm.value.profileForm?.phone_number!)
+    this.validationButtonHasBeenPressed = true;
+    if(this.patientForm.valid){
+      this.validationButtonHasBeenPressed = true;
+      const signedUpPatient = this.formBuilderToPatient(this.patientForm)
+      this.addPatientInDatabase(signedUpPatient);
+      console.log(signedUpPatient);
+      //if(this.signedUpPatient){this.signed_up = true;}
+      this.signed_up = true;
     }
-    const signedUpPatient: Patient = {
-      birth_date: this.formatDate(new Date(this.patientForm.value.birth_date!)),
-      gender: this.patientForm.value.gender!,
-      profile: signedUpPatientProfile
-    };
-    this.addPatient(signedUpPatient);
-    this.signed_up = true;
   }
 
-  addPatient(patient: Patient) {
+  formBuilderToPatient(form:FormGroup){
+    const patientProfile: Profile = {
+      name: form.value.profileForm?.name!,
+      firstname: form.value.profileForm?.firstname!,
+      email: form.value.profileForm?.email!,
+      phone_number: Number(form.value.profileForm?.phone_number!)
+    }
+    const signedUpPatient: Patient = {
+      birth_date: this.formatDate(new Date(form.value.birth_date!)),
+      gender: form.value.gender!,
+      profile: patientProfile
+    };
+    return signedUpPatient;
+  }
+
+  addPatientInDatabase(patient: Patient) {
     this.inscriptionService.addPatient(patient)
       .subscribe(patient => {
-        this.patient = patient;
+        this.signedUpPatient = patient;
       });
   }
 
@@ -75,20 +81,4 @@ export class InscriptionComponent {
 }
 
 
-import { AbstractControl, ValidatorFn } from '@angular/forms';
-import { Router } from '@angular/router';
 
-export function phoneNumberFormatValidator(): ValidatorFn {
-  return (control: AbstractControl): { [key: string]: any } | null => {
-    const phoneNumber = control.value;
-
-    // Validate if the input is exactly 8 digits
-    const phoneRegex = /^\d{8}$/;
-
-    if (!phoneRegex.test(phoneNumber)) {
-      return { 'invalidPhoneNumberFormat': { value: control.value } };
-    }
-
-    return null; // Return null if validation passes
-  };
-}

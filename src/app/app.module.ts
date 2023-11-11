@@ -9,6 +9,7 @@ import { InscriptionComponent } from './inscription/inscription.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     InscriptionComponent,
     WelcomePageComponent,
     ConnexionComponent,
-    DashboardComponent
+    DashboardComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

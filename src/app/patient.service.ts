@@ -1,28 +1,29 @@
 import { Injectable } from '@angular/core';
-import { Patient, Token, User } from './models';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Patient, Token } from './models';
 import { Observable, catchError, throwError } from 'rxjs';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ConnexionService {
+export class PatientService {
 
-  private tokenUrl = 'http://127.0.0.1:8000/api/token/';  // URL to web api
-  
+  private patientAuthentificationUrl = 'http://127.0.0.1:8000/api/getPatientFromToken/';
 
   constructor(private http: HttpClient) { }
 
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json'})
-  };
-
-  getToken(user: User): Observable<Token> {
-    return this.http.post<Token>(this.tokenUrl, user, this.httpOptions).pipe(
-      catchError(this.handleError)
-    );
+  getTheLoggedInPatient(token: Token): Observable<Patient> {
+    return this.http.get<Patient>(this.patientAuthentificationUrl, this.makeHeader(token))
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
+  makeHeader(token: Token){
+    return {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization':`Bearer  ${token.access}`})
+    };
+  }
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {

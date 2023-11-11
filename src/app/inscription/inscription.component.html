@@ -6,22 +6,34 @@
             <div class="form-group">
                 <label for="nom">Nom<span>*</span></label>
                 <input type="text" formControlName="name" required>
+                <div class="error_message" *ngIf="patientForm.get('profileForm')?.get('name') && patientForm.get('profileForm')?.get('name')!.invalid && patientForm.get('profileForm')?.get('name')!.touched">
+                    Nom obligatoire
+                </div>
             </div>
             <div class="form-group">
                 <label for="prenom">Prénom<span>*</span></label>
                 <input type="text" formControlName="firstname" required>
+                <div class="error_message" *ngIf="patientForm.get('profileForm')?.get('firstname') && patientForm.get('profileForm')?.get('firstname')!.invalid && patientForm.get('profileForm')?.get('firstname')!.touched">
+                    Prenom obligatoire
+                </div>
             </div>
             <div class="form-group">
                 <label for="telephone">Téléphone<span>*</span></label>
-                <input type="tel" formControlName="phone_number" required>
+                <input type="text" formControlName="phone_number" required>
+                <div class="error_message" *ngIf="patientForm.get('profileForm')?.get('phone_number') && (patientForm.get('profileForm')?.get('phone_number')!.touched || patientForm.get('profileForm')?.get('phone_number')!.dirty) && patientForm.get('profileForm')?.get('phone_number')!.invalid " >
+                    numero invalide
+                </div>
             </div>
             <div class="form-group">
                 <label for="email">E-mail</label>
                 <input type="email" formControlName="email">
+                <div class="error_message" *ngIf="patientForm.get('profileForm')?.get('email') && patientForm.get('profileForm')?.get('email')!.invalid && (patientForm.get('profileForm')?.get('email')!.touched || patientForm.get('profileForm')?.get('email')!.dirty)">
+                    E-mail invalide
+                </div>
             </div>
         </div>
         <div class="form-group">
-            <label for="sexe">Sexe</label>
+            <label for="sexe">Sexe<span>*</span></label>
             <select formControlName="gender">
                 <option value="M">Homme</option>
                 <option value="F">Femme</option>
@@ -31,7 +43,10 @@
             <label for="annee_naissance">Année de naissance</label>
             <input type="date" formControlName="birth_date">
         </div>
-        <button type="submit" class="submit-button">Valider</button>
+        <button type="submit" class="submit-button" [disabled]="!patientForm.valid">Valider</button>
+        <div class="error_message" *ngIf="patientForm.invalid && validationButtonHasBeenPressed">
+            Veuillez bien remplir tous les champs.
+        </div>
     </form>
 </div>
 <div *ngIf="signed_up">
