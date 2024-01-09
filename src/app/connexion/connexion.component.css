@@ -44,7 +44,7 @@ h1 {
     border-color: #66afe9; /* Couleur du bord pour les champs valides */
 }
 
-.form-group span {
+.form-group span h2{
     color: red;
 }
 

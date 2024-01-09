@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Patient, Token } from '../models';
 import { PatientService } from '../patient.service';
 
@@ -23,5 +23,9 @@ export class DashboardComponent {
     this.patientService.getTheLoggedInPatient(this.token).subscribe(patient => this.patient = patient);
   }
 
-  constructor(private route: ActivatedRoute, private patientService: PatientService) {}
+  constructor(private router: Router, private route: ActivatedRoute,  private patientService: PatientService) {}
+
+  goThere(location:string){
+    this.router.navigate([location], { queryParams: { access: this.token?.access, refresh: this.token?.refresh } })
+  }
 }

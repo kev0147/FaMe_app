@@ -10,6 +10,13 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './header/header.component';
+import { MainComponent } from './main/main.component';
+import { AppointmentComponent } from './appointment/appointment.component';
+import { MedicalExamComponent } from './medical-exam/medical-exam.component';
+import { SpecialistAppointmentComponent } from './specialist-appointment/specialist-appointment.component';
+import { MedicalTransportationComponent } from './medical-transportation/medical-transportation.component';
+import { NursingComponent } from './nursing/nursing.component';
+import { CoachingComponent } from './coaching/coaching.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +25,14 @@ import { HeaderComponent } from './header/header.component';
     WelcomePageComponent,
     ConnexionComponent,
     DashboardComponent,
-    HeaderComponent
+    HeaderComponent,
+    MainComponent,
+    AppointmentComponent,
+    MedicalExamComponent,
+    SpecialistAppointmentComponent,
+    MedicalTransportationComponent,
+    NursingComponent,
+    CoachingComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +42,7 @@ import { HeaderComponent } from './header/header.component';
       headerName: 'My-Xsrf-Header',
     }),
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

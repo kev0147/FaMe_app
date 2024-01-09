@@ -1,14 +1,15 @@
 <div class="container">
 
     <app-header [patient]="patient">  </app-header>
+    
     <div class="main-space">
         <div class="button-grid">
-            <button>Consultation Generaliste</button>
-            <button>Examen</button>
-            <button>Consultation Specialiste</button>
-            <button>Transport Medicalise</button>
-            <button>Nursing</button>
-            <button>Coaching</button>
+            <button (click)="goThere('appointment')">Consultation Generaliste</button>
+            <button (click)="goThere('medicalExam')">Examen</button>
+            <button (click)="goThere('specialistAppointment')">Consultation Specialiste</button>
+            <button (click)="goThere('medicalTransportation')">Transport Medicalise</button>
+            <button (click)="goThere('nursing')">Nursing</button>
+            <button (click)="goThere('coaching')">Coaching</button>
         </div>
     </div>
 

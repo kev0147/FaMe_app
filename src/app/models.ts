@@ -3,6 +3,7 @@ export interface Profile {
     firstname: string;
     email?: string; // Optional field
     phone_number: number;
+    user?: User;
 }
 
 export interface Patient {
