@@ -10,9 +10,7 @@ import { PatientService } from '../patient.service';
   styleUrls: ['./connexion.component.css']
 })
 export class ConnexionComponent {
-  user: User | undefined;
-  token : Token | undefined;
-  errorMessage : Boolean = false;
+  errorMessage : string = '';
   
   userForm = this.fb.group({
       username: ['', Validators.required],
@@ -27,18 +25,20 @@ export class ConnexionComponent {
       username : this.userForm.value?.username!,
       password : this.userForm.value.password!
     }
-    this.patientService.getToken(user).subscribe(token=>this.token = token);
-    
-    const accessToken = this.token?.access;
-    if (accessToken) {
-      this.goToDashboard();
-    } else{
-      this.errorMessage = true;
-    }
+    this.patientService.getToken(user).subscribe(token=>this.authenticate(token), err => this.error(err),);
   }
 
-  goToDashboard(){
-    this.router.navigate(['dashboard'], { queryParams: { access: this.token?.access, refresh: this.token?.refresh } });
+  error(err:any){
+    console.error( err);
+    this.errorMessage = 'Mauvais identifiants';
+  }
+
+  authenticate(token: Token){
+    this.goToDashboard(token);
+  }
+
+  goToDashboard(token: Token){
+    this.router.navigate(['dashboard'], { queryParams: { access: token.access, refresh: token.refresh } });
   }
 
   goBack(){

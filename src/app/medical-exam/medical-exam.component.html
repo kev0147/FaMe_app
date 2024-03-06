@@ -1,1 +1,16 @@
-<p>medical-exam works!</p>
+<button class="back-button" (click)="goBack()">Retour</button>
+
+
+<div class="container">
+    <h1>Prenez rendez vous avec votre medecin</h1>
+    <form >
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required>
+
+        <label for="time">Heure:</label>
+        <input type="time" id="time" name="time" required>
+
+        <button type="submit">Valider</button>
+    </form>
+</div>

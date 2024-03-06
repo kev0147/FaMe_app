@@ -1,0 +1,19 @@
+
+
+<div class="chat-container">
+    <div class="chat-header">
+      <h2> KAJY </h2>
+    </div>
+    <div class="chat-messages" >
+      <div *ngFor="let message of messages">
+        <div *ngIf="message.sender==patientId" class="sent">{{message.message}}</div>
+        <div *ngIf="message.receiver==patientId" class="received">{{message.message}}</div>
+      </div>
+
+      
+    </div>
+    <div class="chat-input">
+      <textarea [(ngModel)]="messageText" name="message" placeholder="Type your message..."></textarea>
+      <button (click)="sendMessage()">envoyer</button>
+    </div>
+  </div>

@@ -1,10 +1,12 @@
+//const backendUrl = 'https://endeavor.pythonanywhere.com/';
 const backendUrl = 'http://127.0.0.1:8000/';
+
 export let id: string = '';
 
 export const environment = {
     
     patients: `${backendUrl}patients`,
-    patientInscription: `${backendUrl}patients/inscription`,
+    patientInscription: `${backendUrl}patientInscription/inscription`,
     nonValidatedPatients: `${backendUrl}patients/non_validated_patients`,
     validatedPatients: `${backendUrl}patients/validated_patients`,
     patientValidation: `${backendUrl}patients/${id}/validation`,
@@ -21,6 +23,7 @@ export const environment = {
     services: `${backendUrl}services`,
     token: `${backendUrl}token/`,
     refreshToken:  `${backendUrl}token/refresh/`,
-    getPatientFromToken: `${backendUrl}patients/get_patient_from_token`
+    getPatientFromToken: `${backendUrl}patients/get_patient_from_token`,
+    appointments: `${backendUrl}appointments`
   };
   

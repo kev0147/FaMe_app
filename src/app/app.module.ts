@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 
@@ -17,6 +17,8 @@ import { SpecialistAppointmentComponent } from './specialist-appointment/special
 import { MedicalTransportationComponent } from './medical-transportation/medical-transportation.component';
 import { NursingComponent } from './nursing/nursing.component';
 import { CoachingComponent } from './coaching/coaching.component';
+import { ChatComponent } from './chat/chat.component';
+import { LocationComponent } from './location/location.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { CoachingComponent } from './coaching/coaching.component';
     SpecialistAppointmentComponent,
     MedicalTransportationComponent,
     NursingComponent,
-    CoachingComponent
+    CoachingComponent,
+    ChatComponent,
+    LocationComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +46,7 @@ import { CoachingComponent } from './coaching/coaching.component';
       headerName: 'My-Xsrf-Header',
     }),
     ReactiveFormsModule,
+    FormsModule,
     AppRoutingModule,
   ],
   providers: [],

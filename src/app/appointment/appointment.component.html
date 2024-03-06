@@ -1,4 +1,19 @@
-<div>
-    <button class="back-button" (click)="goBack()">Retour</button>
-    
+<button class="back-button" (click)="goBack()">Retour</button>
+
+
+<div class="container">
+    <h1>Prenez rendez vous avec votre medecin</h1>
+    <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" formControlName="date" required>
+        <div class="error_message" *ngIf="appointmentForm.get('date') && appointmentForm.get('date')!.invalid && appointmentForm.get('date')!.touched">
+            vos dattes sont pas encore mures
+        </div>
+
+        <label for="time">Heure:</label>
+        <input type="time" id="time" formControlName="time" required>
+
+        <button type="submit" [disabled]="!appointmentForm.valid">Valider</button>
+    </form>
 </div>

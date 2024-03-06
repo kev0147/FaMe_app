@@ -10,8 +10,11 @@ import { MedicalTransportationComponent } from './medical-transportation/medical
 import { NursingComponent } from './nursing/nursing.component';
 import { CoachingComponent } from './coaching/coaching.component';
 import { MedicalExamComponent } from './medical-exam/medical-exam.component';
+import { ChatComponent } from './chat/chat.component';
+import { LocationComponent } from './location/location.component';
 
 const routes: Routes = [
+  { path: 'chat', component: ChatComponent },
   { path: 'appointment', component: AppointmentComponent },
   { path: 'specialistAppointment', component: SpecialistAppointmentComponent },
   { path: 'medicalTransportation', component: MedicalTransportationComponent },
@@ -22,6 +25,7 @@ const routes: Routes = [
   { path: 'inscription', component: InscriptionComponent },
   { path: 'connexion', component: ConnexionComponent },
   { path: 'welcome_page', component: WelcomePageComponent },
+  { path: 'location', component: LocationComponent },
   { path: '', component: WelcomePageComponent },
   { path: '**', component: WelcomePageComponent },
 ];

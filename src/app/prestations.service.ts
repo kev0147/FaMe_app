@@ -1,23 +1,15 @@
-import { Injectable } from '@angular/core';
-import { Patient, Token, User } from './models';
-import { Observable, catchError, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable, catchError, throwError } from 'rxjs';
+import { Prestation, Token } from './models';
 import { environment } from './environnement';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PatientService {
-  
+export class PrestationsService {
 
   constructor(private http: HttpClient) { }
-
-  getTheLoggedInPatient(token: Token): Observable<Patient> {
-    return this.http.get<Patient>(environment.getPatientFromToken, this.makeHeader(token))
-      .pipe(
-        catchError(this.handleError)
-      );
-  }
 
   makeHeader(token: Token){
     return {
@@ -39,20 +31,12 @@ export class PatientService {
     return throwError(() => new Error('Something bad happened; please try again later. Backend may not respond'));
   }
 
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json'})
-  };
-
-  addPatient(patient: Patient): Observable<Patient> {
-    return this.http.post<Patient>(environment.patientInscription, patient).pipe(
-      catchError(this.handleError)
-    );
-  }
-
-  getToken(user: User): Observable<Token> {
-    return this.http.post<Token>(environment.token, user, this.httpOptions).pipe(
-      catchError(this.handleError)
-    );
+  getPrestationById(token: Token, prestationId: number): Observable<Prestation> {
+    const url = `${environment.prestations}/${prestationId}`;
+    return this.http.get<Prestation>(url, this.makeHeader(token))
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
 }
